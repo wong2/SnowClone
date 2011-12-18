@@ -24,14 +24,22 @@ var DrawLine = function() {
             offsetLeft = canvas.offsetLeft,
             offsetTop = canvas.offsetTop;
 
-            canvas.addEventListener("mousedown", function(e) {
+            var isMobile = +("ontouchstart" in window);
+
+            var events = {
+                start: ["mousedown", "touchstart"],
+                end:   ["mouseup", "touchend"],
+                move:  ["mousemove", "touchmove"]
+            };
+
+            canvas.addEventListener(events.start[isMobile], function(e) {
                 isPainting = true;
                 _drawCircle(e.pageX, e.pageY);
             }, false);
-            canvas.addEventListener("mouseup", function(e) {
+            canvas.addEventListener(events.end[isMobile], function(e) {
                 isPainting = false;
             }, false);
-            canvas.addEventListener("mousemove", function(e) {
+            canvas.addEventListener(events.move[isMobile], function(e) {
                 if (isPainting) {
                     _drawCircle(e.pageX, e.pageY);
                 }
