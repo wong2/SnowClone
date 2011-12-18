@@ -1,23 +1,23 @@
 var DrawLine = function() {
 
-	var context, offsetLeft, offsetTop;
+    var context, offsetLeft, offsetTop;
 
-	function _drawCircle(mouseX, mouseY) {
+    function _drawCircle(mouseX, mouseY) {
         var x = mouseX - offsetLeft,
             y = mouseY - offsetTop;
-		context.beginPath();
-		context.arc(x, y, 15, 0, Math.PI * 2);
-		context.closePath();
-		context.fill();
-	}
+        context.beginPath();
+        context.arc(x, y, 15, 0, Math.PI * 2);
+        context.closePath();
+        context.fill();
+    }
 
-	function _setLineStyle() {
-		context.strokeStyle = "#df4b26";
-		context.lineJoin = "round";
-		context.lineWidth = 20;
-	}
+    function _setLineStyle() {
+        context.strokeStyle = "#df4b26";
+        context.lineJoin = "round";
+        context.lineWidth = 20;
+    }
 
-	return {
+    return {
         init: function(canvas) {
             var isPainting = false;
 
