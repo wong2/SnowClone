@@ -1,6 +1,5 @@
 var DrawLine = function() {
 
-	var isPainting = false;
 	var context, offsetLeft, offsetTop;
 
 	function _drawCircle(mouseX, mouseY) {
@@ -20,6 +19,8 @@ var DrawLine = function() {
 
 	return {
         init: function(canvas) {
+            var isPainting = false;
+
             context = canvas.getContext("2d"),
             offsetLeft = canvas.offsetLeft,
             offsetTop = canvas.offsetTop;
@@ -34,6 +35,7 @@ var DrawLine = function() {
 
             canvas.addEventListener(events.start[isMobile], function(e) {
                 isPainting = true;
+                e = isMobile?e.targetTouches[0]:e;
                 _drawCircle(e.pageX, e.pageY);
             }, false);
             canvas.addEventListener(events.end[isMobile], function(e) {
@@ -41,6 +43,7 @@ var DrawLine = function() {
             }, false);
             canvas.addEventListener(events.move[isMobile], function(e) {
                 if (isPainting) {
+                    e = isMobile?e.targetTouches[0]:e;
                     _drawCircle(e.pageX, e.pageY);
                 }
             }, false);
